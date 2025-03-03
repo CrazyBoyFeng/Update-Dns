@@ -8,5 +8,4 @@ DDNS script
 3. Execute `Update-Dns.Cmd`. Default regular window mode. Pauses when finished. The launcher can be adjusted with the parameters:
 * `Update-Dns.Cmd Minimized` Minimized window mode. Pauses only on error.
 * `Update-Dns.Cmd Hidden` Hidden window mode. Exits when finished. The execution result can be judged by the exit code and the output file.
-
-If you need to execute it in a timed loop, please refer to Task Scheduler for more information.
+4. Use the Task Scheduler to create periodic execution task.
