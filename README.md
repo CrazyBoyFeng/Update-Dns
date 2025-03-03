@@ -1,0 +1,2 @@
+# Update-Dns
+DDNS script
