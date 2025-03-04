@@ -2,11 +2,13 @@
 $domain = "your.domain"
 $key = "your.key"
 # The above fields are required
+
 $check_ip_url = ""
 # If not set, skip detection of current IP
 # Only support services where the response is plaintext and the content is IP only, for example:
 # https://ipecho.net/plain
 # https://ip.atomo.cn
+
 Set-Location -Path $PSScriptRoot
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
