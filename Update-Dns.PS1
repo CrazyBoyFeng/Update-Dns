@@ -25,8 +25,9 @@ function Get-DomainIP {
 }
 
 function Get-CurrentIP {
+    Param($CheckIPUrl)
     try {
-        $response = Invoke-WebRequest -UseBasicParsing -Uri "https://ip.atomo.cn"
+        $response = Invoke-WebRequest -UseBasicParsing -Uri $CheckIPUrl
         $ip = $response.Content
         Write-Host "Current IP: $ip"
         Return $ip
@@ -38,8 +39,8 @@ function Get-CurrentIP {
 }
 
 function Update-IP {
-    Param($IP)
-    $url = "https://dyn.dns.he.net/nic/update?hostname=$domain&password=$key"
+    Param($Domain, $Key, $IP = '')
+    $url = "https://dyn.dns.he.net/nic/update?hostname=$Domain&password=$Key"
     If ($IP) {
         $url = $url + "&myip=$IP"
     }
@@ -56,12 +57,12 @@ function Update-IP {
 
 $ip = Get-DomainIP $domain
 If ($check_ip_url) {
-    $current = Get-CurrentIP
+    $current = Get-CurrentIP $check_ip_url
     If ($ip -eq $current) {
         Exit 1
     }
-    Update-IP $current    
+    Update-IP $domain $key $current    
 }
 Else {
-    Update-IP
+    Update-IP $domain $key
 }
